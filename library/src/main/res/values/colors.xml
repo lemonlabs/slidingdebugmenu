@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sdm__drawer_bg">#3C3C3C</color>
+    <color name="sdm__drawer_title">#DEDEDE</color>
+
+    <color name="sdm__module_title">#DEDEDE</color>
+    <color name="sdm__module_property_name">#ABABAB</color>
+    <color name="sdm__module_property_value">#DEDEDE</color>
+    <color name="sdm__module_title_underline">#FFFF8800</color>
+
+    <color name="sdm__network_button_underline">#ABABAB</color>
+
+    <drawable name="sdm__transparent">#00000000</drawable>
+    <drawable name="sdm__default_clickable">#22FFFFFF</drawable>
+    <drawable name="sdm__default">#3C3C3C</drawable>
+    <drawable name="sdm__default_pressed">#5E5E5E</drawable>
+
+</resources>

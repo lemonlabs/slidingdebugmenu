@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">SlidingDebugMenu</string>
+
+    <string name="sdm__button_wifi_on">Turn Off WiFi</string>
+    <string name="sdm__button_mobile_on">Turn Mobile Off</string>
+
+    <string name="sdm__drawer_subtitle">Debug drawer by Lemon Labs</string>
+
+    <string name="sdm__module_network_wifi">Wifi State</string>
+    <string name="sdm__module_network_mobile">Mobile State</string>
+    <string name="sdm__module_network_bluetooth">Bluetooth State</string>
+    <string name="sdm__module_log_level">Level</string>
+    <string name="sdm__module_build_name">Name</string>
+    <string name="sdm__module_build_version">Version</string>
+    <string name="sdm__module_build_package">Package</string>
+    <string name="sdm__module_location_latitide">Latitude</string>
+    <string name="sdm__module_location_longitude">Longitude</string>
+    <string name="sdm__module_location_accuracy">Accuracy</string>
+    <string name="sdm__module_location_time">Time</string>
+    <string name="sdm__module_location_provider">Provider</string>
+    <string name="sdm__module_location_map_not_found">Could not find app that opens a map</string>
+    <string name="sdm__module_location_not_found">No location set</string>
+    <string name="sdm__module_location_empty">-</string>
+    <string name="sdm__module_location_no_provider">None</string>
+    <string name="sdm__module_location_play_unavailable">Google Play Services unavailable</string>
+</resources>

@@ -1,0 +1,29 @@
+<!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/demo/src/main/AndroidManifest.xml --><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="co.lemonlabs.android.slidingdebugmenu.demo">
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19"/>
+
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme">
+        <activity android:label="@string/app_name" android:name="co.lemonlabs.android.slidingdebugmenu.demo.DemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- From: file:/var/folders/nw/flkmvx515g12mf1hlhgwkx8m0000gn/T/manifestMerge4738482876433221422.xml -->
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/demo/src/main/AndroidManifest.xml -->
+        
+
+    </application>
+
+</manifest>

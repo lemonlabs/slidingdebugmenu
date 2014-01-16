@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:background="@drawable/sdm__module_button_group_bg"
+        android:layout_marginBottom="@dimen/sdm__module_subtitle_margin">
+
+        <ImageButton
+            style="@style/Widget.Sdm.Button.Transparent"
+            android:id="@+id/sdm__location_get"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sdm__ic_locate"/>
+
+        <ImageButton
+            style="@style/Widget.Sdm.Button.Transparent"
+            android:id="@+id/sdm__location_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sdm__ic_location"/>
+
+        <ImageButton
+            style="@style/Widget.Sdm.Button.Transparent"
+            android:id="@+id/sdm__location_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sdm__ic_map"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

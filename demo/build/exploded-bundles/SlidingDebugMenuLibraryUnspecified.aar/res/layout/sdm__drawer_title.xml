@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/sdm__drawer_title_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/small"/>
+
+    <TextView
+        android:id="@+id/sdm__drawer_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="@color/sdm__drawer_title"
+        android:layout_toLeftOf="@id/sdm__drawer_title_icon"/>
+
+    <TextView
+        android:id="@+id/sdm__drawer_title_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sdm__drawer_subtitle"
+        android:textSize="12sp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="@color/sdm__drawer_title"
+        android:layout_toLeftOf="@id/sdm__drawer_title_icon"
+        android:layout_below="@id/sdm__drawer_title"/>
+
+</RelativeLayout><!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/library/src/main/res/layout/sdm__drawer_title.xml -->

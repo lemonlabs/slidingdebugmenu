@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/library/src/main/res/values/colors.xml -->
+    <eat-comment />
+
+    <color name="sdm__drawer_bg">#3C3C3C</color>
+    <color name="sdm__drawer_title">#DEDEDE</color>
+    <color name="sdm__module_property_name">#ABABAB</color>
+    <color name="sdm__module_property_value">#DEDEDE</color>
+    <color name="sdm__module_title">#DEDEDE</color>
+    <color name="sdm__module_title_underline">#FFFF8800</color>
+    <color name="sdm__network_button_underline">#ABABAB</color>
+    <!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/library/src/main/res/values/dimens.xml -->
+    <eat-comment />
+
+    <dimen name="sdm__behind_offset">60dp</dimen>
+    <dimen name="sdm__drawer_module_margin">12dp</dimen>
+    <dimen name="sdm__drawer_side_padding">8dp</dimen>
+    <dimen name="sdm__drawer_top_padding">12dp</dimen>
+    <dimen name="sdm__module_subtitle_margin">6dp</dimen>
+    <dimen name="sdm__shadow_width">5dp</dimen>
+    <dimen name="small">4dp</dimen>
+    <!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/library/src/main/res/values/colors.xml -->
+    <eat-comment />
+
+    <drawable name="sdm__default">#3C3C3C</drawable>
+    <drawable name="sdm__default_clickable">#22FFFFFF</drawable>
+    <drawable name="sdm__default_pressed">#5E5E5E</drawable>
+    <drawable name="sdm__transparent">#00000000</drawable>
+    <!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/library/src/main/res/values/strings.xml -->
+    <eat-comment />
+
+    <string name="app_name">SlidingDebugMenu</string>
+    <string name="sdm__button_mobile_on">Turn Mobile Off</string>
+    <string name="sdm__button_wifi_on">Turn Off WiFi</string>
+    <string name="sdm__drawer_subtitle">Debug drawer by Lemon Labs</string>
+    <string name="sdm__module_build_name">Name</string>
+    <string name="sdm__module_build_package">Package</string>
+    <string name="sdm__module_build_version">Version</string>
+    <string name="sdm__module_location_accuracy">Accuracy</string>
+    <string name="sdm__module_location_empty">-</string>
+    <string name="sdm__module_location_latitide">Latitude</string>
+    <string name="sdm__module_location_longitude">Longitude</string>
+    <string name="sdm__module_location_map_not_found">Could not find app that opens a map</string>
+    <string name="sdm__module_location_no_provider">None</string>
+    <string name="sdm__module_location_not_found">No location set</string>
+    <string name="sdm__module_location_play_unavailable">Google Play Services unavailable</string>
+    <string name="sdm__module_location_provider">Provider</string>
+    <string name="sdm__module_location_time">Time</string>
+    <string name="sdm__module_log_level">Level</string>
+    <string name="sdm__module_network_bluetooth">Bluetooth State</string>
+    <string name="sdm__module_network_mobile">Mobile State</string>
+    <string name="sdm__module_network_wifi">Wifi State</string>
+    <!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/library/src/main/res/values/styles.xml -->
+    <eat-comment />
+
+    <style name="Widget.Sdm.Button" parent="android:Widget.Holo.Button">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Widget.Sdm.Button.Transparent" parent="@style/Widget.Sdm.Button">
+        <item name="android:background">@drawable/sdm__transparent_clickable</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="Widget.Sdm.Spinner" parent="@style/Widget.AppCompat.Base.Spinner">
+        <item name="android:layout_weight">5</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
+
+    <style name="Widget.Sdm.TextView.ModuleTitle" parent="android:Widget.Holo.TextView">
+        <item name="android:textColor">@color/sdm__module_title</item>
+        <item name="android:background">@drawable/sdm__module_title_bg</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Sdm.TextView.PropertyName" parent="@style/Widget.Sdm.TextView.PropertySimple">
+        <item name="android:textColor">@color/sdm__module_property_name</item>
+        <item name="android:layout_weight">4</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Widget.Sdm.TextView.PropertySimple" parent="android:Widget.Holo.TextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.Sdm.TextView.PropertyValue" parent="@style/Widget.Sdm.TextView.PropertySimple">
+        <item name="android:layout_weight">5</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:textColor">@color/sdm__module_property_value</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

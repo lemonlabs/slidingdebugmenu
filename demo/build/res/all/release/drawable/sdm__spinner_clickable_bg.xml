@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true"  android:state_enabled="false" android:state_pressed="true" android:drawable="@drawable/sdm__default" />
+    <item android:state_focused="true"  android:state_enabled="false"                              android:drawable="@drawable/sdm__default" />
+    <item android:state_focused="true"                                android:state_pressed="true" android:drawable="@drawable/sdm__default_pressed" />
+    <item android:state_focused="false"                               android:state_pressed="true" android:drawable="@drawable/sdm__default_pressed" />
+    <item android:state_focused="true"                                                             android:drawable="@drawable/sdm__default" />
+    <item                                                                                          android:drawable="@drawable/sdm__default" />
+</selector><!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/library/src/main/res/drawable/sdm__spinner_clickable_bg.xml --><!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/demo/build/exploded-bundles/SlidingDebugMenuLibraryUnspecified.aar/res/drawable/sdm__spinner_clickable_bg.xml -->

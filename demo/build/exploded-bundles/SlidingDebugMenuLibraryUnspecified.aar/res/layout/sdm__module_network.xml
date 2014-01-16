@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:background="@drawable/sdm__module_button_group_bg"
+        android:layout_marginBottom="@dimen/sdm__module_subtitle_margin">
+
+        <ImageButton
+            style="@style/Widget.Sdm.Button.Transparent"
+            android:id="@+id/sdm__network_wifi_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sdm__ic_network_wifi"/>
+
+        <ImageButton
+            style="@style/Widget.Sdm.Button.Transparent"
+            android:id="@+id/sdm__network_mobile_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sdm__ic_network_connection"/>
+
+        <ImageButton
+            style="@style/Widget.Sdm.Button.Transparent"
+            android:id="@+id/sdm__network_bluetooth_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sdm__ic_network_bluetooth"/>
+    </LinearLayout>
+
+
+
+</LinearLayout><!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/library/src/main/res/layout/sdm__module_network.xml -->

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/sdm__drawer_bg">
+
+    <include
+        android:id="@+id/sdm__drawer_settings"
+        layout="@layout/sdm__drawer_settings"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/sdm__drawer_settings"
+        android:layout_alignParentTop="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:id="@+id/sdm__drawer_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/sdm__drawer_side_padding"
+            android:paddingRight="@dimen/sdm__drawer_side_padding"
+            android:paddingTop="@dimen/sdm__drawer_top_padding"
+            android:orientation="vertical">
+
+            <include layout="@layout/sdm__drawer_title"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>
+<!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/library/src/main/res/layout/sdm__drawer.xml --><!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/demo/build/exploded-bundles/SlidingDebugMenuLibraryUnspecified.aar/res/layout/sdm__drawer.xml -->

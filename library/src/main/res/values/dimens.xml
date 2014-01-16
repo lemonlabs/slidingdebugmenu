@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small">4dp</dimen>
+
+    <!-- Sliding menu -->
+    <dimen name="sdm__shadow_width">5dp</dimen>
+    <dimen name="sdm__behind_offset">60dp</dimen>
+
+    <dimen name="sdm__drawer_module_margin">12dp</dimen>
+    <dimen name="sdm__drawer_side_padding">8dp</dimen>
+    <dimen name="sdm__drawer_top_padding">12dp</dimen>
+
+    <dimen name="sdm__module_subtitle_margin">6dp</dimen>
+</resources>
