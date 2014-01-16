@@ -110,7 +110,6 @@ License
 [Ionicons][6] is licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 [1]: https://raw.github.com/lemonlabs/slidingdebugmenu/master/images/image1.png
-
 [3]: https://github.com/jfeinstein10/SlidingMenu
 [4]: https://speakerdeck.com/jakewharton/android-apps-with-dagger
 [5]: http://www.lemonlabs.co
