@@ -23,7 +23,7 @@ Add that folder to your repositories in `build.gradle`
 and add the dependency
 
     dependencies {
-        compile 'lt.lemonlabs:slidingdebugmenu:0.1.0@aar'
+        compile 'co.lemonlabs:slidingdebugmenu:0.1.0@aar'
     }
 
 or you can check the demo code.
