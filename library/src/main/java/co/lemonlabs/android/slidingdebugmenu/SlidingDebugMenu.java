@@ -137,6 +137,11 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
     private View mDrawerSettings;
 
     /**
+     * Drawer subtitle
+     */
+    private TextView mDrawerSubtitle;
+
+    /**
      * List of currently added and visible modules
      */
     private List<MenuModule> mModules;
@@ -181,6 +186,7 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
 
         mContainer = (ViewGroup) getMenu().findViewById(R.id.sdm__drawer_container);
         mDrawerSettings = getMenu().findViewById(R.id.sdm__drawer_settings);
+        mDrawerSubtitle = (TextView) getMenu().findViewById(R.id.sdm__drawer_title_description);
 
         // Set drawer title icon and name
         final ApplicationInfo appInfo = context.getApplicationInfo();
@@ -287,6 +293,15 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
      */
     public void setDrawerSettingsVisible(boolean visible) {
         mDrawerSettings.setVisibility(visible ? VISIBLE : GONE);
+    }
+
+    /**
+     * Set drawer subtitle
+     *
+     * @param text
+     */
+    public void setDrawerSubtitle(String text) {
+        mDrawerSubtitle.setText(text);
     }
 
     /**
