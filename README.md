@@ -2,31 +2,14 @@ SlidingDebugMenu
 ==================
 
 SlidingDebugMenu is a helper layout for developers that allows easy access to the state of the device and its settings
-from anywhere in your application. Use predefined modules or implements your own to suit your development needs!
+from anywhere in your application. Use predefined modules or implement your own to suit your development needs!
 
 ![Example Image][1]
 
 Including in your project
 -------------------------
 
-The library supports the Android gradle build system. Create a `libs` folder in your project and copy
-`slidingdebugmenu-0.1.0.aar` to it.
-
-Add that folder to your repositories in `build.gradle`
-
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-    }
-
-and add the dependency
-
-    dependencies {
-        compile 'co.lemonlabs:slidingdebugmenu:0.1.0@aar'
-    }
-
-or you can check the demo code.
+To be added
 
 Usage
 -----
