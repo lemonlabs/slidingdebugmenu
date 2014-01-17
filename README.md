@@ -82,6 +82,15 @@ injection framework like Dagger would be useful in future releases.
 
 See comments and examples for instructions of further customization of the menu.
 
+Dependencies
+------------
+
+SlidingDebugMenu depends on
+
+* [SlidingMenu][3]
+* [GooglePlayServices][2]
+* [Google Guava][8]
+* [GreenRobot EventBus][9]
 
 Acknowledgements
 --------------------
@@ -113,9 +122,12 @@ License
 [Ionicons][6] is licensed under the [MIT license][7].
 
 [1]: https://raw.github.com/lemonlabs/slidingdebugmenu/master/images/image1.png
+[2]: https://developer.android.com/google/play-services/index.html?hl=lt
 [3]: https://github.com/jfeinstein10/SlidingMenu
 [4]: https://speakerdeck.com/jakewharton/android-apps-with-dagger
 [5]: http://www.lemonlabs.co
 [6]: http://ionicons.com/
 [7]: http://opensource.org/licenses/MIT
+[8]: https://code.google.com/p/guava-libraries/
+[9]: https://github.com/greenrobot/EventBus
 =======
