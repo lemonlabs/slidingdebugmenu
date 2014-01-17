@@ -56,8 +56,10 @@ broadcast receivers, an EventBus, etc.
 
 To attach a custom module to the debug drawer you can use one of:
 
+    menu = SlidingDebugMenu.attach(this)
     menu.addModule(MenuModule module, boolean callOnStart)
     menu.addModule(int position, MenuModule module, boolean callOnStart)
+
 after attaching the drawer to an activity. Modules added this way will not persist after configuration changes or
 reinitialization of the menu.
 
@@ -69,6 +71,7 @@ Use a static module editor before attaching it to the activity.
         .add(CustomModule.class)
         .remove(BuildModule.class)
         .commit();
+    SlidingDebugMenu.attach(this)
 
 Using this method will automatically reinitialize every module on reinitialization or they could be shared between
 multiple activities.
@@ -77,7 +80,7 @@ NOTE: Reflection is used to instantiate the modules, so currently only empty con
 injection framework like Dagger would be useful in future releases.
 
 
-See javadocs and examples for further customization of the menu.
+See comments and examples for instructions of further customization of the menu.
 
 
 Acknowledgements
@@ -107,11 +110,12 @@ License
     limitations under the License.
 
 
-[Ionicons][6] is licensed under the [MIT license](http://opensource.org/licenses/MIT).
+[Ionicons][6] is licensed under the [MIT license][7].
 
 [1]: https://raw.github.com/lemonlabs/slidingdebugmenu/master/images/image1.png
 [3]: https://github.com/jfeinstein10/SlidingMenu
 [4]: https://speakerdeck.com/jakewharton/android-apps-with-dagger
 [5]: http://www.lemonlabs.co
 [6]: http://ionicons.com/
+[7]: http://opensource.org/licenses/MIT
 =======
