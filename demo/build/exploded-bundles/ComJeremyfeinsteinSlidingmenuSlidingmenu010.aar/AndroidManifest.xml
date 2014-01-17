@@ -1,5 +1,0 @@
-<!-- From: file:/Users/balysv/AndroidStudioProjects/SlidingDebugMenu/contrib/SlidingMenu/library/AndroidManifest.xml --><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="0.1.0" package="com.jeremyfeinstein.slidingmenu.lib">
-
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="19"/>
-
-</manifest>
