@@ -96,7 +96,7 @@ Use a static module editor before attaching it to the activity.
         .commit();
     SlidingDebugMenu.attach(this)
 
-Using this method will automatically reinitialize every module on reinitialization or they could be shared between
+Using this method will automatically reinitialize every module on reinitialization and they could be shared between
 multiple activities.
 
 NOTE: Reflection is used to instantiate the modules, so currently only empty constructors are allowed. A dependency
