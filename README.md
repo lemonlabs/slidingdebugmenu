@@ -9,7 +9,30 @@ from anywhere in your application. Use predefined modules or implement your own 
 Including in your project
 -------------------------
 
-To be added
+Currently the library is only distributed as a SNAPSHOT through Sonatype repository.
+It also depends on [SlidingMenu][3] which is not distributed through maven, so you have
+to include it as a local AAR library. To do that, create a `libs` folder in your project,
+copy the [AAR][10] to it and include a `flatDir` repository to your `build.gradle`.
+
+Gradle:
+
+    repositories {
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        flatDir { dirs 'libs' }
+    }
+
+    dependencies {
+        compile 'co.lemonlabs:slidingdebugmenu:0.1.0-SNAPSHOT'
+        compile 'com.jeremyfeinstein:slidingmenu:1.3.0@aar'
+    }
+
+Maven:
+
+    <dependency>
+        <groupId>co.lemonlabs</groupId>
+        <artifactId>slidingdebugmenu</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </dependency>
 
 Usage
 -----
@@ -82,6 +105,10 @@ injection framework like Dagger would be useful in future releases.
 
 See comments and examples for instructions of further customization of the menu.
 
+Change Log
+----------
+No changes so far
+
 Dependencies
 ------------
 
@@ -130,4 +157,5 @@ License
 [7]: http://opensource.org/licenses/MIT
 [8]: https://code.google.com/p/guava-libraries/
 [9]: https://github.com/greenrobot/EventBus
+[10]: https://github.com/lemonlabs/slidingdebugmenu/tree/master/aar
 =======
