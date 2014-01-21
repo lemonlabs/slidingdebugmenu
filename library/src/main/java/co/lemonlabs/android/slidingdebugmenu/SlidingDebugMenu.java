@@ -90,7 +90,7 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
      * Call {@link ModuleSetBuilder#commit()} after making changes.
      * <p/>
      * Committed changes are only applied when attaching the menu to an Activity.
-     * Otherwise, use {@link #addModule(MenuModule, boolean)} and {@link #removeModule(MenuModule)}
+     * Otherwise, use {@link #addModule(MenuModule)} and {@link #removeModule(MenuModule)}
      * to modify the menu
      * <p/>
      * TODO: Use a dependency injector to manage modules
@@ -164,9 +164,9 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
 
         // Set drawer size depending on screen orientation
         final int orientation = getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_PORTRAIT)
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             setBehindOffsetRes(R.dimen.sdm__behind_offset);
-        else {
+        } else {
             // Calculate screen metrics in dp
             Display display = context.getWindowManager().getDefaultDisplay();
             DisplayMetrics outMetrics = new DisplayMetrics();
@@ -203,7 +203,7 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
         mModules = new ArrayList<>();
         mModuleViews = new HashMap<>();
         for (MenuModule module : modules) {
-            addModule(module, false);
+            addModule(module);
         }
     }
 
@@ -211,12 +211,9 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
      * Add a new module to the end of the menu
      *
      * @param module      module to add
-     * @param callOnStart pass true if you want to run {@link MenuModule#onStart()}.
-     *                    Use when adding modules after onStart() of {@link Activity}
-     *                    has been called.
      */
-    public void addModule(MenuModule module, boolean callOnStart) {
-        addModule(mModules.size(), module, callOnStart);
+    public void addModule(MenuModule module) {
+        addModule(mModules.size(), module);
     }
 
     /**
@@ -224,15 +221,11 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
      *
      * @param position    the index at which to insert
      * @param module      module to add
-     * @param callOnStart pass true if you want to run {@link MenuModule#onStart()}.
-     *                    Use when adding modules after onStart() of {@link Activity}
-     *                    has been called.
      */
-    public void addModule(int position, MenuModule module, boolean callOnStart) {
+    public void addModule(int position, MenuModule module) {
         mModules.add(position, module);
         // drawer has a title view and each module has 2 views
         mModuleViews.put(module, addModuleViews(module, position * 2 + 1));
-        if (callOnStart) module.onStart();
     }
 
     /**
