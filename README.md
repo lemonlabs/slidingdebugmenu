@@ -9,7 +9,7 @@ from anywhere in your application. Use predefined modules or implement your own 
 Including in your project
 -------------------------
 
-Currently the library is only distributed as a SNAPSHOT through Sonatype repository.
+Currently the library is only distributed through Sonatype repository.
 It also depends on [SlidingMenu][3] which is not distributed through maven, so you have
 to include it as a local AAR library. To do that, create a `libs` folder in your project,
 copy the [AAR][10] to it and include a `flatDir` repository to your `build.gradle`.
@@ -17,12 +17,12 @@ copy the [AAR][10] to it and include a `flatDir` repository to your `build.gradl
 Gradle:
 
     repositories {
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        maven { url 'https://oss.sonatype.org/content/groups/public' }
         flatDir { dirs 'libs' }
     }
 
     dependencies {
-        compile 'co.lemonlabs:slidingdebugmenu:0.1.0-SNAPSHOT'
+        compile 'co.lemonlabs:slidingdebugmenu:0.1.0'
         compile 'com.jeremyfeinstein:slidingmenu:1.3.0@aar'
     }
 

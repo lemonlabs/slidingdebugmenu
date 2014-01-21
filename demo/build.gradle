@@ -9,7 +9,7 @@ buildscript {
 apply plugin: 'android'
 
 repositories {
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    maven { url 'https://oss.sonatype.org/content/groups/public' }
     mavenCentral()
     flatDir {
         dirs 'libs'
@@ -41,6 +41,6 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:19.0.+'
-    compile 'co.lemonlabs:slidingdebugmenu:0.1.0-SNAPSHOT'
+    compile 'co.lemonlabs:slidingdebugmenu:0.1.0'
     compile 'com.jeremyfeinstein:slidingmenu:1.3.0@aar'
 }
