@@ -26,7 +26,7 @@ public class DemoActivity extends ActionBarActivity {
         // ... some code
 
         // re-add module at position 1
-        menu.addModule(1, new LocationModule(), false);
+        menu.addModule(1, new LocationModule());
 
         // show/hide the settings at the bottom of the drawer
         menu.setDrawerSettingsVisible(true);

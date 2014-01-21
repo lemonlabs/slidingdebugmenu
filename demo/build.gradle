@@ -9,7 +9,6 @@ buildscript {
 apply plugin: 'android'
 
 repositories {
-    maven { url 'https://oss.sonatype.org/content/groups/public' }
     mavenCentral()
     flatDir {
         dirs 'libs'
