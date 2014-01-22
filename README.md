@@ -6,6 +6,19 @@ from anywhere in your application. Use predefined modules or implement your own 
 
 ![Example Image][1]
 
+Default modules
+---------------
+
+<i>Network module</i> allows switching state of your wifi, mobile networks and bluetooth provided your device
+supports them and display their current state.
+
+<i>Log module</i> controls which level of log should be output, provided you use our Log wrapper class.
+
+<i>Location module</i> allows to easily retrieve current location and its parameters, access location settings
+and show your location in a map. This module uses GooglePlayServices, so it will not work on devices without it.
+
+<i>Build module</i> provides some basic info about the installed application.
+
 Including in your project
 -------------------------
 
@@ -56,19 +69,6 @@ and add lifecycle callbacks in your onStop() and onStart().
         super.onStart();
         menu.onStart();
     }
-
-Default modules
----------------
-
-<i>Network module</i> allows switching state of your wifi, mobile networks and bluetooth provided your device
-supports them and display their current state.
-
-<i>Log module</i> controls which level of log should be output, provided you use our Log wrapper class.
-
-<i>Location module</i> allows to easily retrieve current location and its parameters, access location settings
-and show your location in a map. This module uses GooglePlayServices, so it will not work on devices without it.
-
-<i>Build module</i> provides some basic info about the installed application.
 
 Customization
 -------------
