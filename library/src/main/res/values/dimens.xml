@@ -3,8 +3,7 @@
     <dimen name="small">4dp</dimen>
 
     <!-- Sliding menu -->
-    <dimen name="sdm__shadow_width">5dp</dimen>
-    <dimen name="sdm__behind_offset">60dp</dimen>
+    <dimen name="sdm__width">320dp</dimen>
 
     <dimen name="sdm__drawer_module_margin">12dp</dimen>
     <dimen name="sdm__drawer_side_padding">8dp</dimen>

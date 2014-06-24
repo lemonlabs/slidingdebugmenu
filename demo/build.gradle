@@ -11,9 +11,6 @@ apply plugin: 'android'
 repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     mavenCentral()
-    flatDir {
-        dirs 'libs'
-    }
 }
 
 android {
@@ -41,6 +38,5 @@ android {
 
 dependencies {
     compile project(':library')
-    compile 'com.android.support:appcompat-v7:19.0.+'
-    compile 'com.jeremyfeinstein:slidingmenu:1.3.0@aar'
+    compile 'com.android.support:appcompat-v7:19.1.+'
 }
