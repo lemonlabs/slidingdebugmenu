@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/sdm__drawer_bg">
+<co.lemonlabs.android.slidingdebugmenu.SlidingDebugMenu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/sdm__width"
+    android:layout_height="match_parent"
+    android:background="@color/sdm__drawer_bg">
 
     <include
         android:id="@+id/sdm__drawer_settings"
@@ -30,4 +30,4 @@
         </LinearLayout>
 
     </ScrollView>
-</RelativeLayout>
+</co.lemonlabs.android.slidingdebugmenu.SlidingDebugMenu>

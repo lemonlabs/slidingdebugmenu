@@ -21,19 +21,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.ResolveInfo;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.provider.Settings;
-import android.util.DisplayMetrics;
-import android.view.Display;
+import android.support.v4.widget.DrawerLayout;
+import android.util.AttributeSet;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import co.lemonlabs.android.slidingdebugmenu.modules.BuildModule;
+import co.lemonlabs.android.slidingdebugmenu.modules.LocationModule;
+import co.lemonlabs.android.slidingdebugmenu.modules.LogModule;
+import co.lemonlabs.android.slidingdebugmenu.modules.MenuModule;
+import co.lemonlabs.android.slidingdebugmenu.modules.NetworkModule;
+import co.lemonlabs.android.slidingdebugmenu.views.ModuleTitle;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,14 +50,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import co.lemonlabs.android.slidingdebugmenu.modules.BuildModule;
-import co.lemonlabs.android.slidingdebugmenu.modules.LocationModule;
-import co.lemonlabs.android.slidingdebugmenu.modules.LogModule;
-import co.lemonlabs.android.slidingdebugmenu.modules.MenuModule;
-import co.lemonlabs.android.slidingdebugmenu.modules.NetworkModule;
-import co.lemonlabs.android.slidingdebugmenu.views.ModuleTitle;
-
-public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListener {
+public class SlidingDebugMenu extends RelativeLayout implements View.OnClickListener {
 
     private static final String TAG = "SlidingDebugMenu";
 
@@ -105,25 +104,45 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
      * Attach a new instance of SlidingDebugMenu to an activity with the given Set of
      * {@link MenuModule} classes. Use {@link #edit()} to modify modules to load.
      * <p/>
-     * By default the menu will be on the right. To adjust
-     * layout parameters, use {@link com.jeremyfeinstein.slidingmenu.lib.SlidingMenu}
-     * for reference.
+     * By default the menu will be on the right. To adjust layout parameters, use
+     * {@link #attach(android.app.Activity, android.support.v4.widget.DrawerLayout, int)}
+     * and provide one of {@link android.view.Gravity} constants.
      *
      * @param context Activity to attach to
+     * @param container DrawerLayout to place itself into
+     *
      * @return
      */
-    public static SlidingDebugMenu attach(Activity context) {
-        final List<MenuModule> modules = new ArrayList<>();
+    public static SlidingDebugMenu attach(Activity context, DrawerLayout container) {
+        return attach(context, container, Gravity.RIGHT);
+    }
+
+    /**
+     * Attach a new instance of SlidingDebugMenu to an activity with the given Set of
+     * {@link MenuModule} classes. Use {@link #edit()} to modify modules to load.
+     * <p/>
+     *
+     * @param context Activity to attach to
+     * @param container DrawerLayout to place itself into
+     * @param gravity Where to place debug layout, e.g. android.view.Gravity.RIGHT
+     *
+     * @return
+     */
+    public static SlidingDebugMenu attach(Activity context, DrawerLayout container, int gravity) {
+        SlidingDebugMenu sdm = (SlidingDebugMenu) LayoutInflater.from(context).inflate(R.layout.sdm__drawer, container, false);
+        ((DrawerLayout.LayoutParams) sdm.getLayoutParams()).gravity = gravity;
+
         for (Class<? extends MenuModule> moduleClass : modulesToLoad) {
             try {
-                modules.add(moduleClass.newInstance());
+                sdm.addModule(moduleClass.newInstance());
             } catch (InstantiationException | IllegalAccessException e) {
                 final String msg = "Could not add module " + moduleClass.getSimpleName() + ": " + e.getMessage();
                 throw new IllegalStateException(msg);
             }
         }
-        return new SlidingDebugMenu(context, modules);
 
+        container.addView(sdm);
+        return sdm;
     }
 
     /**
@@ -151,46 +170,20 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
      */
     private Map<MenuModule, ModuleViewHolder> mModuleViews;
 
-    /**
-     * Create a SlidingMenu and attach it to activity with
-     * the passed modules.
-     *
-     * @param context Activity to attach to
-     * @param modules List of modules to initialise
-     */
-    @SuppressWarnings("ConstantConditions")
-    private SlidingDebugMenu(Activity context, List<MenuModule> modules) {
-        super(context, null);
+    public SlidingDebugMenu(Context context,  AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-        // Set drawer size depending on screen orientation
-        final int orientation = getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            setBehindOffsetRes(R.dimen.sdm__behind_offset);
-        } else {
-            // Calculate screen metrics in dp
-            Display display = context.getWindowManager().getDefaultDisplay();
-            DisplayMetrics outMetrics = new DisplayMetrics();
-            display.getMetrics(outMetrics);
-            float sWidth = outMetrics.widthPixels;
-            float sHeight = outMetrics.heightPixels;
+    @Override protected void onFinishInflate() {
+        super.onFinishInflate();
 
-            int drawerWidth = (int) (sHeight - getResources().getDimension(R.dimen.sdm__behind_offset));
-            setBehindOffset((int) Math.min(drawerWidth, sWidth));
-        }
-
-        setMode(SlidingMenu.RIGHT);
-        setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-        setFadeDegree(0f);
-        setMenu(R.layout.sdm__drawer);
-        attachToActivity(context, SlidingMenu.SLIDING_WINDOW);
-
-        mContainer = (ViewGroup) getMenu().findViewById(R.id.sdm__drawer_container);
-        mDrawerSettings = getMenu().findViewById(R.id.sdm__drawer_settings);
-        mDrawerSubtitle = (TextView) getMenu().findViewById(R.id.sdm__drawer_title_description);
+        mContainer = (ViewGroup) findViewById(R.id.sdm__drawer_container);
+        mDrawerSettings = findViewById(R.id.sdm__drawer_settings);
+        mDrawerSubtitle = (TextView) findViewById(R.id.sdm__drawer_title_description);
 
         // Set drawer title icon and name
-        final ApplicationInfo appInfo = context.getApplicationInfo();
-        ((ImageView) findViewById(R.id.sdm__drawer_title_icon)).setImageDrawable(appInfo.loadIcon(context.getPackageManager()));
+        final ApplicationInfo appInfo = getContext().getApplicationInfo();
+        ((ImageView) findViewById(R.id.sdm__drawer_title_icon)).setImageDrawable(appInfo.loadIcon(getContext().getPackageManager()));
         ((TextView) findViewById(R.id.sdm__drawer_title)).setText(appInfo.labelRes);
 
         // Init drawer settings
@@ -202,9 +195,6 @@ public class SlidingDebugMenu extends SlidingMenu implements View.OnClickListene
 
         mModules = new ArrayList<>();
         mModuleViews = new HashMap<>();
-        for (MenuModule module : modules) {
-            addModule(module);
-        }
     }
 
     /**
