@@ -134,7 +134,7 @@ public class SlidingDebugMenu extends RelativeLayout implements View.OnClickList
 
         for (Class<? extends MenuModule> moduleClass : modulesToLoad) {
             try {
-                sdm.addModule(moduleClass.newInstance(), false);
+                sdm.addModule(moduleClass.newInstance());
             } catch (InstantiationException | IllegalAccessException e) {
                 final String msg = "Could not add module " + moduleClass.getSimpleName() + ": " + e.getMessage();
                 throw new IllegalStateException(msg);
