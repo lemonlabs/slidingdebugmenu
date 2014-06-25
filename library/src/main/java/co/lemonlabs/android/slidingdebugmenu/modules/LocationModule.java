@@ -27,19 +27,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.common.base.Optional;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import de.greenrobot.event.EventBus;
 import co.lemonlabs.android.slidingdebugmenu.R;
 import co.lemonlabs.android.slidingdebugmenu.controllers.LocationController;
 import co.lemonlabs.android.slidingdebugmenu.modules.events.LocationEvent;
 import co.lemonlabs.android.slidingdebugmenu.views.ModuleSimpleProperty;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import de.greenrobot.event.EventBus;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Module that provides information about the current
@@ -61,7 +58,7 @@ public class LocationModule extends MenuModule {
     private ModuleSimpleProperty time;
     private ModuleSimpleProperty provider;
 
-    private Optional<Location> mLocation;
+    private Location mLocation;
 
     private boolean mPlayServicesAvailable;
 
@@ -151,19 +148,18 @@ public class LocationModule extends MenuModule {
      *
      * @param location
      */
-    private void updateLocation(Optional<Location> location) {
+    private void updateLocation(Location location) {
         mLocation = location;
-        if (location.isPresent()) {
-            Location loc = location.get();
-            latitude.setPropertyValue(String.valueOf(loc.getLatitude()));
-            longitude.setPropertyValue(String.valueOf(loc.getLongitude()));
-            accuracy.setPropertyValue(String.valueOf(loc.getAccuracy()) + "m");
+        if (location != null) {
+            latitude.setPropertyValue(String.valueOf(location.getLatitude()));
+            longitude.setPropertyValue(String.valueOf(location.getLongitude()));
+            accuracy.setPropertyValue(String.valueOf(location.getAccuracy()) + "m");
 
-            Date date = new Date(loc.getTime());
+            Date date = new Date(location.getTime());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             time.setPropertyValue(sdf.format(date));
 
-            provider.setPropertyValue(loc.getProvider());
+            provider.setPropertyValue(location.getProvider());
         } else {
             latitude.setPropertyValue(R.string.sdm__module_location_empty);
             longitude.setPropertyValue(R.string.sdm__module_location_empty);
@@ -181,9 +177,8 @@ public class LocationModule extends MenuModule {
      */
     private void openMaps(Context context) {
         try {
-            if (mLocation.isPresent()) {
-                Location loc = mLocation.get();
-                String uri = "geo:" + loc.getLatitude() + "," + loc.getLongitude();
+            if (mLocation != null) {
+                String uri = "geo:" + mLocation.getLatitude() + "," + mLocation.getLongitude();
                 context.startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri)));
             } else {
                 Toast.makeText(context, R.string.sdm__module_location_not_found, Toast.LENGTH_SHORT).show();

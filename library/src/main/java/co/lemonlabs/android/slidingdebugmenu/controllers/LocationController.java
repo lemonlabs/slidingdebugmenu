@@ -26,7 +26,6 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
-import com.google.common.base.Optional;
 
 import de.greenrobot.event.EventBus;
 import co.lemonlabs.android.slidingdebugmenu.modules.events.LocationEvent;
@@ -51,12 +50,12 @@ public class LocationController implements GooglePlayServicesClient.ConnectionCa
     private LocationController(Context context) {
         if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(context) == ConnectionResult.SUCCESS)
             mLocationClient = new LocationClient(context, this, this);
-        else EventBus.getDefault().post(new LocationEvent(Optional.<Location>absent()));
+        else EventBus.getDefault().post(new LocationEvent(null));
     }
 
     @Override
     public void onConnected(Bundle bundle) {
-        final Optional<Location> location = Optional.fromNullable(mLocationClient.getLastLocation());
+        final Location location = mLocationClient.getLastLocation();
         EventBus.getDefault().post(new LocationEvent(location));
     }
 
@@ -67,7 +66,7 @@ public class LocationController implements GooglePlayServicesClient.ConnectionCa
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        EventBus.getDefault().post(new LocationEvent(Optional.<Location>absent()));
+        EventBus.getDefault().post(new LocationEvent(null));
     }
 
     /**
@@ -90,8 +89,8 @@ public class LocationController implements GooglePlayServicesClient.ConnectionCa
      *
      * @return
      */
-    public Optional<Location> getLastLocation() {
-        return mLocationClient != null ? Optional.fromNullable(mLocationClient.getLastLocation()) : Optional.<Location>absent();
+    public Location getLastLocation() {
+        return mLocationClient != null ? mLocationClient.getLastLocation() : null;
     }
 
     /**
@@ -110,7 +109,7 @@ public class LocationController implements GooglePlayServicesClient.ConnectionCa
     private LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            EventBus.getDefault().post(new LocationEvent(Optional.fromNullable(location)));
+            EventBus.getDefault().post(new LocationEvent(location));
         }
     };
 }
