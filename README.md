@@ -23,20 +23,15 @@ Including in your project
 -------------------------
 
 Currently the library is only distributed through Maven central repository.
-It also depends on [SlidingMenu][3] which is not distributed through maven, so you have
-to include it as a local AAR library. To do that, create a `libs` folder in your project,
-copy the [AAR][10] to it and include a `flatDir` repository to your `build.gradle`.
 
 Gradle:
 
     repositories {
         mavenCentral()
-        flatDir { dirs 'libs' }
     }
 
     dependencies {
         compile 'co.lemonlabs:slidingdebugmenu:0.1.0'
-        compile 'com.jeremyfeinstein:slidingmenu:1.3.0@aar'
     }
 
 Maven:
@@ -114,15 +109,14 @@ Dependencies
 
 SlidingDebugMenu depends on
 
-* [SlidingMenu][3]
 * [GooglePlayServices][2]
 * [Google Guava][8]
 * [GreenRobot EventBus][9]
 
 Acknowledgements
 --------------------
-* [jfeinstein10/SlidingMenu][3] for the core layout used in the project
-* [This presentation by Jake Wharton][4] for inspiration because we could not for his implementation and made our own.
+* [jfeinstein10/SlidingMenu][3] for the core layout used in earlier versions of the project
+* [This presentation by Jake Wharton][4] for inspiration because we could not wait for his implementation and made our own.
 
 Developed By
 --------------------
