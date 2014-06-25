@@ -16,7 +16,6 @@
 
 package co.lemonlabs.android.slidingdebugmenu;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -34,114 +33,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import co.lemonlabs.android.slidingdebugmenu.modules.BuildModule;
-import co.lemonlabs.android.slidingdebugmenu.modules.LocationModule;
-import co.lemonlabs.android.slidingdebugmenu.modules.LogModule;
 import co.lemonlabs.android.slidingdebugmenu.modules.MenuModule;
-import co.lemonlabs.android.slidingdebugmenu.modules.NetworkModule;
 import co.lemonlabs.android.slidingdebugmenu.views.ModuleTitle;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class SlidingDebugMenu extends RelativeLayout implements View.OnClickListener {
 
     private static final String TAG = "SlidingDebugMenu";
 
-    /**
-     * Shared set of module classes that will be loaded when attaching the menu
-     * to an Activity.
-     */
-    private static Set<Class<? extends MenuModule>> modulesToLoad =
-            Collections.synchronizedSet(new LinkedHashSet<Class<? extends MenuModule>>());
-
-    /**
-     * List of default module classes
-     */
-    static {
-        modulesToLoad.add(NetworkModule.class);
-        modulesToLoad.add(LogModule.class);
-        modulesToLoad.add(LocationModule.class);
-        modulesToLoad.add(BuildModule.class);
-    }
-
-    /**
-     * Get the set of classes that will be loaded on menu initialization. Editing
-     * this set is possible but {@link #edit()} is preferred.
-     * <p/>
-     * Changes made are only applied when attaching the menu to an Activity
-     *
-     * @return
-     */
-    public static Set<Class<? extends MenuModule>> getModulesToLoad() {
-        return modulesToLoad;
-    }
-
-    /**
-     * Edit the set of {@link MenuModule} classes that will load on menu initialization.
-     * If using custom modules, they must have an empty public constructor to be added.
-     * Call {@link ModuleSetBuilder#commit()} after making changes.
-     * <p/>
-     * Committed changes are only applied when attaching the menu to an Activity.
-     * Otherwise, use {@link #addModule(MenuModule)} and {@link #removeModule(MenuModule)}
-     * to modify the menu
-     * <p/>
-     * TODO: Use a dependency injector to manage modules
-     *
-     * @return
-     */
-    public static ModuleSetBuilder edit() {
-        return new ModuleSetBuilder();
-    }
-
-    /**
-     * Attach a new instance of SlidingDebugMenu to an activity with the given Set of
-     * {@link MenuModule} classes. Use {@link #edit()} to modify modules to load.
-     * <p/>
-     * By default the menu will be on the right. To adjust layout parameters, use
-     * {@link #attach(android.app.Activity, android.support.v4.widget.DrawerLayout, int)}
-     * and provide one of {@link android.view.Gravity} constants.
-     *
-     * @param context Activity to attach to
-     * @param container DrawerLayout to place itself into
-     *
-     * @return
-     */
-    public static SlidingDebugMenu attach(Activity context, DrawerLayout container) {
-        return attach(context, container, Gravity.RIGHT);
-    }
-
-    /**
-     * Attach a new instance of SlidingDebugMenu to an activity with the given Set of
-     * {@link MenuModule} classes. Use {@link #edit()} to modify modules to load.
-     * <p/>
-     *
-     * @param context Activity to attach to
-     * @param container DrawerLayout to place itself into
-     * @param gravity Where to place debug layout, e.g. android.view.Gravity.RIGHT
-     *
-     * @return
-     */
-    public static SlidingDebugMenu attach(Activity context, DrawerLayout container, int gravity) {
-        SlidingDebugMenu sdm = (SlidingDebugMenu) LayoutInflater.from(context).inflate(R.layout.sdm__drawer, container, false);
-        ((DrawerLayout.LayoutParams) sdm.getLayoutParams()).gravity = gravity;
-
-        for (Class<? extends MenuModule> moduleClass : modulesToLoad) {
-            try {
-                sdm.addModule(moduleClass.newInstance());
-            } catch (InstantiationException | IllegalAccessException e) {
-                final String msg = "Could not add module " + moduleClass.getSimpleName() + ": " + e.getMessage();
-                throw new IllegalStateException(msg);
-            }
+    public static SlidingDebugMenu create(Context context, List<MenuModule> modules) {
+        SlidingDebugMenu sdm = (SlidingDebugMenu) LayoutInflater.from(context).inflate(R.layout.sdm__drawer, null);
+        for (MenuModule module : modules) {
+            sdm.addModule(module);
         }
-
-        container.addView(sdm);
         return sdm;
     }
 
@@ -172,6 +80,12 @@ public class SlidingDebugMenu extends RelativeLayout implements View.OnClickList
 
     public SlidingDebugMenu(Context context,  AttributeSet attrs) {
         super(context, attrs);
+        mModules = new ArrayList<>();
+        mModuleViews = new HashMap<>();
+
+        DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(context, attrs);
+        params.gravity = Gravity.RIGHT;
+        setLayoutParams(params);
     }
 
     @Override protected void onFinishInflate() {
@@ -192,9 +106,6 @@ public class SlidingDebugMenu extends RelativeLayout implements View.OnClickList
         findViewById(R.id.sdm__settings_drawer).setOnClickListener(this);
         findViewById(R.id.sdm__settings_uninstall).setOnClickListener(this);
         findViewById(R.id.sdm__settings_app_info).setOnClickListener(this);
-
-        mModules = new ArrayList<>();
-        mModuleViews = new HashMap<>();
     }
 
     /**
@@ -372,72 +283,6 @@ public class SlidingDebugMenu extends RelativeLayout implements View.OnClickList
             Uri packageURI = Uri.parse("package:" + context.getPackageName());
             Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
             context.startActivity(uninstallIntent);
-        }
-    }
-
-
-    /**
-     * Helper class to edit the modules that will be loaded
-     * on initialization of a SlidingDebugMenu instance
-     */
-    public static class ModuleSetBuilder {
-
-        private Set<Class<? extends MenuModule>> modulesCopy;
-
-        public ModuleSetBuilder() {
-            modulesCopy = new LinkedHashSet<>(modulesToLoad);
-        }
-
-        /**
-         * Add a new {@link MenuModule} class
-         *
-         * @param moduleClass
-         * @return
-         */
-        public ModuleSetBuilder add(Class<? extends MenuModule> moduleClass) {
-            modulesCopy.add(moduleClass);
-            return this;
-        }
-
-        /**
-         * Add a Collection of {@link MenuModule} classes
-         *
-         * @param moduleClasses
-         * @return
-         */
-        public ModuleSetBuilder addAll(Collection<Class<? extends MenuModule>> moduleClasses) {
-            modulesCopy.addAll(moduleClasses);
-            return this;
-        }
-
-        /**
-         * Remove a {@link MenuModule} class
-         *
-         * @param moduleClass
-         * @return
-         */
-        public ModuleSetBuilder remove(Class<? extends MenuModule> moduleClass) {
-            modulesCopy.remove(moduleClass);
-            return this;
-        }
-
-        /**
-         * Clear the set
-         *
-         * @return
-         */
-        public ModuleSetBuilder clear() {
-            modulesCopy.clear();
-            return this;
-        }
-
-        /**
-         * Apply the changes made
-         */
-        public void commit() {
-            modulesToLoad.clear();
-            modulesToLoad.addAll(modulesCopy);
-            modulesCopy.clear();
         }
     }
 
