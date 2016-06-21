@@ -25,46 +25,46 @@ Including in your project
 Currently the library is only distributed through Maven central repository.
 
 Gradle:
+```groovy
+repositories {
+    mavenCentral()
+}
 
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        compile 'co.lemonlabs:slidingdebugmenu:0.1.0'
-    }
-
+dependencies {
+    compile 'co.lemonlabs:slidingdebugmenu:0.1.0'
+}
+```
 Maven:
-
-    <dependency>
-        <groupId>co.lemonlabs</groupId>
-        <artifactId>slidingdebugmenu</artifactId>
-        <version>0.1.0</version>
-    </dependency>
-
+```xml
+<dependency>
+    <groupId>co.lemonlabs</groupId>
+    <artifactId>slidingdebugmenu</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
 Usage
 -----
 
 The library supports Android 2.3+ and is currently only compatible with ActionBarCompat.
 
 To use the default settings simply add this to your Activity's onCreate()
-
-    menu = SlidingDebugMenu.attach(this)
-
+```java
+menu = SlidingDebugMenu.attach(this)
+```
 and add lifecycle callbacks in your onStop() and onStart().
+```java
+@Override
+public void onStop() {
+    menu.onStop();
+    super.onStop();
+}
 
-    @Override
-    public void onStop() {
-        menu.onStop();
-        super.onStop();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        menu.onStart();
-    }
-
+@Override
+public void onStart() {
+    super.onStart();
+    menu.onStart();
+}
+```
 Customization
 -------------
 
@@ -73,24 +73,24 @@ you should override onStart() and onStop() if your module depends on the lifecyc
 broadcast receivers, an EventBus, etc.
 
 To attach a custom module to the debug drawer you can use one of:
-
-    menu = SlidingDebugMenu.attach(this)
-    menu.addModule(MenuModule module, boolean callOnStart)
-    menu.addModule(int position, MenuModule module, boolean callOnStart)
-
+```java
+menu = SlidingDebugMenu.attach(this)
+menu.addModule(MenuModule module, boolean callOnStart)
+menu.addModule(int position, MenuModule module, boolean callOnStart)
+```
 after attaching the drawer to an activity. Modules added this way will not persist after configuration changes or
 reinitialization of the menu.
 
 OR
 
 Use a static module editor before attaching it to the activity.
-
-    SlidingDebugMenu.edit()
-        .add(CustomModule.class)
-        .remove(BuildModule.class)
-        .commit();
-    SlidingDebugMenu.attach(this)
-
+```java
+SlidingDebugMenu.edit()
+    .add(CustomModule.class)
+    .remove(BuildModule.class)
+    .commit();
+SlidingDebugMenu.attach(this)
+```
 Using this method will automatically reinitialize every module on reinitialization and they could be shared between
 multiple activities.
 
